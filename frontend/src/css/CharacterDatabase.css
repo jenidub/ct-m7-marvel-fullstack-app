@@ -1,0 +1,38 @@
+* {
+    background-color: black;
+    font-family: "Commissioner", serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+    color: white;
+}
+
+.navigate-text {
+    display: block;
+    font-size: 1.5em;
+    font-style: italic;
+    text-align: center;
+    margin: 10px 0;
+}
+
+.content-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-arrow {
+    background-color: white !important;
+    width: 50px;
+    height: 50px;
+    margin: 0 20px;
+}
+
+.char-card-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+
