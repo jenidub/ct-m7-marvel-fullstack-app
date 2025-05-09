@@ -4,9 +4,9 @@ import { Card } from "react-bootstrap";
 
 function CharacterCard({ characterInfo }) {
     let powersList = characterInfo.powers.split(",");
-    console.log(`${characterInfo.name}'s power list: ${powersList}`);
-    let numberOfRows = Math.ceil(powersList.length/2);
-    console.log("rows needed: " + numberOfRows);
+    // console.log(`${characterInfo.name}'s power list: ${powersList}`);
+    // let numberOfRows = Math.ceil(powersList.length/2);
+    // console.log("rows needed: " + numberOfRows);
 
     function createPowersList() {
         // Clean up powersList - remove the word 'and' and titleCase prior to table generation
