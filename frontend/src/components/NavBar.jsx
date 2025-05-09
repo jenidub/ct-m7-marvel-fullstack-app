@@ -10,23 +10,33 @@ function NavBar () {
         <>
             <nav className="navbar">
                 <div className="navbar-link-container">
-                    <img className="navbar-icon" src={bpMask} alt="Marvel Black Panther Mask from Icons8" />
-                    <p className="navbar-text">View Directory</p>
+                    <a href="/">
+                        <img className="navbar-icon" src={bpMask} alt="Marvel Black Panther Mask from Icons8" />
+                        <p className="navbar-text">View Directory</p>
+                    </a>
                 </div>
                 <div className="navbar-link-container">
-                    <img className="navbar-icon" src={xmenLogo} alt="Marvel Xmen Team Logo Icon from Icons8" />
-                    <p className="navbar-text">Add A Character</p>
+                    <a href="/add">
+                        <img className="navbar-icon" src={xmenLogo} alt="Marvel Xmen Team Logo Icon from Icons8" />
+                        <p className="navbar-text">Add A Character</p>
+                    </a>
                 </div>
                 <div className="navbar-link-container">
-                    <img id="navbar-main-image" src={marvelLogo} alt="Marvel Character Inset Logo from Icons8" />  
+                    <a href="/">
+                        <img id="navbar-main-image" src={marvelLogo} alt="Marvel Character Inset Logo from Icons8" />
+                    </a>  
                 </div>
                 <div className="navbar-link-container">
-                    <img className="navbar-icon" src={capLogo} alt="Marvel Captain America Shield Logo from Icons8" />
-                    <p className="navbar-text">Edit A Character</p>
+                    <a href="/edit">
+                        <img className="navbar-icon" src={capLogo} alt="Marvel Captain America Shield Logo from Icons8" />
+                        <p className="navbar-text">Edit A Character</p>
+                    </a>
                 </div>
                 <div className="navbar-link-container">
-                    <img className="navbar-icon" src={spidermanMask} alt="Marvel Spiderman Mask Logo from Icons8" />
-                    <p className="navbar-text">Delete A Character</p>
+                    <a href="/delete">
+                        <img className="navbar-icon" src={spidermanMask} alt="Marvel Spiderman Mask Logo from Icons8" />
+                        <p className="navbar-text">Delete A Character</p>
+                    </a>
                 </div>
             </nav>
         </>

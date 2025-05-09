@@ -29,6 +29,11 @@
     box-shadow: 5px 10px 18px #888888;
 }
 
+.character-img {
+    width: 300px;
+    height: 200px;
+}
+
 .character-content {
     margin: 10px 0px;
 }

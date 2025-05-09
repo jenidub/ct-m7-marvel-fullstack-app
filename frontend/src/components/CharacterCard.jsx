@@ -2,26 +2,47 @@ import "../css/CharacterCard.css";
 import { Table } from "react-bootstrap";
 import { Card } from "react-bootstrap";
 
-function CharacterCard() {
+function CharacterCard({ characterInfo }) {
+    let powersList = characterInfo.powers.split(",");
+    console.log(`${characterInfo.name}'s power list: ${powersList}`);
+    let numberOfRows = Math.ceil(powersList.length/2);
+    console.log("rows needed: " + numberOfRows);
+
+    function createPowersList() {
+        // Clean up powersList - remove the word 'and' and titleCase prior to table generation
+
+        return (
+            <Table className="character-powers hero char-text-spacing " bordered>
+                <tbody className="hero">
+                    {powersList.reduce((rows, item, index) => {
+                        if (index % 2 === 0) {
+                        rows.push([item]);
+                        } else {
+                        rows[rows.length - 1].push(item);
+                        }
+                        return rows;
+                    }, []).map((row, index) => (
+                        <tr key={index}>
+                            {row.map((item, index) => (
+                                <td key={index}>{item}</td>
+                            ))}
+                            {row.length === 1 && <td></td>}
+                        </tr>
+                        ))
+                    }
+                </tbody>
+            </Table>
+        )
+    }
+
     return (
         <>
             <Card className="character-card hero">
-                <Card.Img variant="top" src="https://placehold.co/300x200" />
+                <Card.Img className="character-img" variant="top" src={characterInfo.image_url} />
                 <Card.Body className="character-content hero">
-                    <Card.Title className="character-name hero char-text-spacing">Spider-Man</Card.Title>
-                    <Card.Header className="character-affil hero char-text-spacing">Affiliation: Hero</Card.Header>
-                    <Table className="character-powers hero char-text-spacing " striped bordered>
-                        <tbody className="hero">
-                            <tr className="power-row">
-                                <td className="power-cell hero">Super Strength</td>
-                                <td className="power-cell hero">Agility</td>
-                            </tr>
-                            <tr className="power-row">
-                                <td className="power-cell hero">Spider Sense</td>
-                                <td className="power-cell hero">Power #4</td>
-                            </tr>
-                        </tbody>
-                    </Table>
+                    <Card.Title className="character-name hero char-text-spacing">{characterInfo.name}</Card.Title>
+                    <Card.Header className="character-affil hero char-text-spacing">Affiliation: {characterInfo.alignment}</Card.Header>
+                    {createPowersList()}
                 </Card.Body>
             </Card>
         </>
@@ -29,3 +50,7 @@ function CharacterCard() {
 }
 
 export default CharacterCard;
+
+CharacterCard.propTypes = {
+    characterInfo: Object,
+}

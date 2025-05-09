@@ -1,6 +1,7 @@
 # py -m venv venv | python3 -m venv venv - create virtual env
 # venv\Scripts\activate | source venv/bin/activate - activate virtual env 
-# pip install -r requirements.txt
+# pip install -r requirements.txt => install requirements from txt file
+# python3 server.py => run the MySQL server
 
 from flask import Flask, request, jsonify
 from sqlalchemy import String, Enum, Text, Integer, select, create_engine, text

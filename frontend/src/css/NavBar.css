@@ -2,6 +2,11 @@
     font-family: "Noto Sans", serif;
 }
 
+a {
+    text-decoration: none;
+}
+
+a,
 .navbar,
 .navbar-link-container,
 .navbar-icon,
@@ -26,6 +31,7 @@
 
 .navbar-icon {
     width: 100px;
+    margin: 0 auto;
 }
 
 #navbar-main-image {
@@ -41,7 +47,7 @@
     text-transform: uppercase;
     text-wrap: wrap;
     text-align: center;
-    margin: 5px 0 10px 0;
+    margin: 0 auto;
 }
 
 
