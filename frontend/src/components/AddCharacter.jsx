@@ -49,7 +49,7 @@ function AddCharacter (props) {
             || characterImgURL.trim() === '' 
             || characterPowers.trim() === ''
         ) {
-            setError('Both title and body are required');
+            setError('All fields in the form are required. Please try again');
             return false;
         }
         setError('');
