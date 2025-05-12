@@ -4,6 +4,7 @@ import { Routes, Route } from 'react-router-dom';
 import NavBar from './components/NavBar';
 import HomePage from './components/HomePage';
 import CharacterDatabase from './components/CharacterDatabase';
+import ViewCharacter from "./components/ViewCharacter";
 import AddCharacter from './components/AddCharacter';
 import EditCharacter from './components/EditCharacter';
 import DeleteCharacter from './components/DeleteCharacter';
@@ -41,13 +42,16 @@ function App() {
       {!loading && (
         <>
           <NavBar />
-          <h3 className="sub-title">Welcome to the</h3>
-          <h1 className="main-title">JeniDub Marvel Character Database</h1>
+          <div className="title-section">
+            <h3 className="sub-title">Welcome to the</h3>
+            <h1 className="main-title">JeniDub Marvel Character Database</h1>
+          </div>
           <br />
           <Routes>
             <Route path='/' element={<HomePage characterDatabase={data} />} />
             <Route path='/database' element={<CharacterDatabase characterDatabase={data} />} />
-            <Route path="/add" element={<AddCharacter sampleCharacterCard={data[0]}/>} />
+            <Route path="/view" element={<ViewCharacter characterDatabase={data} />}/>
+            <Route path="/add" element={<AddCharacter />} />
             <Route path="/edit" element={<EditCharacter characterDatabase={data} />} />
             <Route path="/delete" element={<DeleteCharacter characterDatabase={data} />} />
             <Route path="*" element={<ErrorPage />} />

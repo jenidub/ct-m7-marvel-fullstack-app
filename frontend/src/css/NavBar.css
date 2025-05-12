@@ -15,7 +15,7 @@ a,
 }
 
 .navbar {
-    width: 100%;
+    width: 90%;
     display: flex;
     justify-content: space-evenly;
     align-items: flex-start;
@@ -35,8 +35,9 @@ a,
 }
 
 #navbar-main-image {
-    width: 200px;
+    width: 150px;
     margin: 30px 0;
+    padding: 0px;
 }
 
 .navbar-text {
@@ -45,9 +46,21 @@ a,
     font-size: 12px;
     font-weight: 700;
     text-transform: uppercase;
-    text-wrap: wrap;
     text-align: center;
     margin: 0 auto;
 }
 
+.nav-link {
+    width: 100px;
+}
 
+.navbarContent {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-nav {
+    margin: 0 auto; /* center nav items */
+}

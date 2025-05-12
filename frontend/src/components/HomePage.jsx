@@ -7,23 +7,28 @@ const HomePage = () => {
             <div>
                 <h3 className="sub-title text-center">Use the buttons below to navigate our website</h3>
                 <div className="row d-flex justify-content-center" style={{ marginTop: '2em' }}>
-                    <div className="col-md-6 col-12 mb-3 d-flex justify-content-center">
-                        <Link to="/database" className="btn btn-primary w-75">
+                    <div className="col-md-4 col-12 mb-4 d-flex justify-content-center">
+                        <Link to="/database" className="btn w-75 option-button">
                             Character Database
                         </Link>
                     </div>
-                    <div className="col-md-6 col-12 mb-3 d-flex justify-content-center">
-                        <Link to="/add" className="btn btn-primary w-75">
+                    <div className="col-md-4 col-12 mb-4 d-flex justify-content-center">
+                        <Link to="/view" className="btn w-75 option-button">
+                            View Character
+                        </Link>
+                    </div>
+                    <div className="col-md-4 col-12 mb-4 d-flex justify-content-center">
+                        <Link to="/add" className="btn w-75 option-button">
                             Add Character
                         </Link>
                     </div>
-                    <div className="col-md-6 col-12 mb-3 d-flex justify-content-center">
-                        <Link to="/edit" className="btn btn-primary w-75">
+                    <div className="col-md-4 col-12 mb-4 d-flex justify-content-center">
+                        <Link to="/edit" className="btn w-75 option-button">
                             Edit Character
                         </Link>
                     </div>
-                    <div className="col-md-6 col-12 mb-3 d-flex justify-content-center">
-                        <Link to="/delete" className="btn btn-primary w-75">
+                    <div className="col-md-4 col-12 mb-4 d-flex justify-content-center">
+                        <Link to="/delete" className="btn w-75 option-button">
                             Delete Character
                         </Link>
                     </div>

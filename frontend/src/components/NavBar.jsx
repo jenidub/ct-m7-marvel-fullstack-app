@@ -4,11 +4,12 @@ import capLogo from "../assets/i8-captain-america-white.png";
 import marvelLogo from "../assets/marvel-character-logo.png";
 import xmenLogo from "../assets/i8-x-men-white.png";
 import spidermanMask from "../assets/i8-spiderman-white.png";
+import thanosGlove from "../assets/i8-thanos-glove.png";
 
 function NavBar() {
     return (
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div className="container-fluid">
+        <nav className="navbar navbar-expand-lg navbar-dark bg-dark w-100">
+            <div className="container-fluid navbarContent">
                 <a className="navbar-brand d-none d-lg-block" href="/">
                     <img id="navbar-main-image" src={marvelLogo} alt="Marvel Character Inset Logo from Icons8" />
                 </a>
@@ -26,27 +27,43 @@ function NavBar() {
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav">
                         <li className="nav-item d-none d-md-flex align-items-center">
-                            <img src={bpMask} alt="Black Panther Mask" className="nav-icon" />
+                            <a className="nav-link" href="/database">
+                                <img src={bpMask} alt="Black Panther Mask" className="nav-icon" />
+                            </a>
                             <a className="nav-link" href="/database">
                                 Character Database
                             </a>
                         </li>
                         <li className="nav-item d-none d-md-flex align-items-center">
-                            <img src={capLogo} alt="Captain America Logo" className="nav-icon" />
+                            <a className="nav-link" href="/view">
+                                <img src={thanosGlove} alt="Thanos Glove" className="nav-icon" />
+                            </a>
+                            <a className="nav-link" href="/view">
+                                View Character
+                            </a>
+                        </li>
+                        <li className="nav-item d-none d-md-flex align-items-center">
                             <a className="nav-link" href="/add">
-                                Add A Character
+                                <img src={capLogo} alt="Captain America Logo" className="nav-icon" />
+                            </a>
+                            <a className="nav-link" href="/add">
+                                Add Character
                             </a>
                         </li>
                         <li className="nav-item d-none d-md-flex align-items-center">
-                            <img src={xmenLogo} alt="X-Men Logo" className="nav-icon" />
                             <a className="nav-link" href="/edit">
-                                Edit A Character
+                                <img src={xmenLogo} alt="X-Men Logo" className="nav-icon" />
+                            </a>
+                            <a className="nav-link" href="/edit">
+                                Edit Character
                             </a>
                         </li>
                         <li className="nav-item d-none d-md-flex align-items-center">
-                            <img src={spidermanMask} alt="Spiderman Mask" className="nav-icon" />
                             <a className="nav-link" href="/delete">
-                                Delete A Character
+                                <img src={spidermanMask} alt="Spiderman Mask" className="nav-icon" />
+                            </a>
+                            <a className="nav-link" href="/delete">
+                                Delete Character
                             </a>
                         </li>
                     </ul>
