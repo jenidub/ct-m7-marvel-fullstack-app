@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import '../css/EditCharacter.css';
 import CharacterCard from "./CharacterCard";
 
@@ -12,7 +12,6 @@ function EditCharacter (props) {
     const [ selectedCharacter, setSelectedCharacter ] = useState(null);
     const [ searchId, setSearchId ] = useState('');
     const [ searchError, setSearchError] = useState("");
-    // const [ characterId, setCharacterId ] = useState(null);
 
     // Init state variables for form data
     const [ characterName, setCharacterName ] = useState("");
@@ -28,6 +27,7 @@ function EditCharacter (props) {
     // Update displayed Card based on the ID field changes
     const handleSearch = () => {
         const found = characterDatabase.find((item) => item.id.toString() === searchId.trim());
+
         if (found) {
             setSelectedCharacter(found);
             setSearchError('');
@@ -37,6 +37,17 @@ function EditCharacter (props) {
             setSearchError('Character Not Found. Please try again!');
         }
     }
+
+    // Ensure the data in the fields to be edited refreshes with each search
+    useEffect(() => {
+        if (selectedCharacter) {
+            setCharacterName(selectedCharacter.name || "");
+            setCharacterAlias(selectedCharacter.alias || "");
+            setCharacterAlignment(selectedCharacter.alignment || "");
+            setCharacterPowers(selectedCharacter.powers || "");
+            setcharacterImgURL(selectedCharacter.image_url || "");
+        }
+    }, [selectedCharacter]);
 
     // // Handlers for data changes
     const handleNameChange = (event) => {
@@ -59,17 +70,25 @@ function EditCharacter (props) {
         setCharacterAlignment(event.target.value);
     };
 
-    // Form Validation Method
+    // Form Validation Method to check if any of the fields have been modified
+    // Only block if no fields have been updated
     const validateForm = () => {
-        if (characterName.trim() === '' 
-            || characterAlias.trim() === ''
-            || characterAlignment.trim() === '' 
-            || characterImgURL.trim() === '' 
-            || characterPowers.trim() === ''
-        ) {
-            setError('All fields in the form are required. Please try again');
+        if (!selectedCharacter) {
+            setError('No character selected.');
             return false;
         }
+
+        if (
+            characterName === selectedCharacter.name &&
+            characterAlias === selectedCharacter.alias &&
+            characterAlignment === selectedCharacter.alignment &&
+            characterPowers === selectedCharacter.powers &&
+            characterImgURL === selectedCharacter.image_url
+        ) {
+            setError('No changes detected. Please modify at least one field.');
+            return false;
+        }
+
         setError('');
         return true;
     };
@@ -82,23 +101,26 @@ function EditCharacter (props) {
             return; 
         }
 
+        //
+        const fullPayload = {
+            name: characterName || selectedCharacter.name,
+            alias: characterAlias || selectedCharacter.alias,
+            alignment: characterAlignment || selectedCharacter.alignment,
+            powers: characterPowers || selectedCharacter.powers,
+            image_url: characterImgURL || selectedCharacter.image_url,
+        };
+
         try {
             const response = await fetch(`${DEFAULT_API_URL}/${selectedCharacter.id}`, {
                 method: "PUT",
-                body: JSON.stringify({
-                    name: characterName,
-                    alias: characterAlias,
-                    alignment: characterAlignment,
-                    powers: characterPowers,
-                    image_url: characterImgURL,
-                }),
+                body: JSON.stringify(fullPayload),
                 headers: {
                     'Content-type': 'application/json; charset=UTF-8',
                 }
             })
 
             if(!response.ok) {
-                throw new Error("Failed to add new character");
+                throw new Error("Failed to update character");
             }
 
             // Display success message
@@ -117,6 +139,12 @@ function EditCharacter (props) {
             setCharacterAlignment("");
             setCharacterPowers("");
             setcharacterImgURL("");
+            setSearchId("");
+            setSelectedCharacter(null);
+
+            // setSearchError("");
+            // setSuccess("");
+            // setError("");
         } catch (error) {
             setError(error.message);
         }
@@ -126,16 +154,19 @@ function EditCharacter (props) {
     return (
         <>
             <div className="form-container">
-                <div className="">
+                <div className="text-center">
                     <div>
                         <h2>Edit an Existing Character</h2>
                         <p>
-                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quasi error non qui natus ullam 
-                            pariatur debitis sit tempore aliquam. Architecto exercitationem repellat praesentium 
-                            voluptas reiciendis deleniti nostrum doloremque debitis incidunt!
-                        </p>
+                            Use the form below to edit an existing character in the database.
+                            You can update as many field as you want.</p>
                     </div>
-                    <div className='content-container'>
+                    <div className='content-container text-center'>
+                        {/* Display validation error or success message */}
+                        {error && <div style={{ color: 'red' }}>{error}</div>}
+                        {success && <div style={{ color: 'green' }}>{success}</div>}
+
+                        {/* Search by ID Section */}
                         <div className="form-element">
                             <label htmlFor="character-id" className="form-label">Enter the ID of the character you would like to edit: </label>
                             <input
@@ -145,8 +176,8 @@ function EditCharacter (props) {
                                 placeholder="Numerical values only"
                                 onChange={(e) => setSearchId(e.target.value)}
                             />
-                            <p>Current IDs Available: 1 - {characterDatabase.length}</p>
-                            <button onClick={handleSearch}>Click to Search for ID</button>
+                            {/* <p>Current IDs Available: 1 - {characterDatabase.length}</p> */}
+                            <button onClick={handleSearch}>Click to Search by ID</button>
                         </div>
 
                         {searchError && <p className="text-red-500 mt-2">{searchError}</p>}
@@ -164,7 +195,7 @@ function EditCharacter (props) {
                                             className="form-control"
                                             id="character-name"
                                             placeholder="i.e. Black Panther"
-                                            defaultValue={selectedCharacter.name || ''}
+                                            value={characterName}
                                             onChange={handleNameChange}
                                         />
                                     </div>
@@ -175,7 +206,7 @@ function EditCharacter (props) {
                                             className="form-control"
                                             id="character-alias"
                                             placeholder="i.e. King T'Challa"
-                                            defaultValue={selectedCharacter.alias || ''}
+                                            value={characterAlias}
                                             onChange={handleAliasChange}
                                         />
                                     </div>
@@ -185,7 +216,7 @@ function EditCharacter (props) {
                                             type="dropdown"
                                             className="form-control" 
                                             id="character-align"
-                                            defaultValue={selectedCharacter.alignment || ''}
+                                            value={characterAlignment}
                                             onChange={handleAlignmentChange}
                                         />
                                     </div>
@@ -195,7 +226,7 @@ function EditCharacter (props) {
                                             type="text"
                                             className="form-control"
                                             id="character-powers"
-                                            defaultValue={selectedCharacter.powers || ''}
+                                            value={characterPowers}
                                             onChange={handlePowersChange}
                                         />
                                     </div>
@@ -205,7 +236,7 @@ function EditCharacter (props) {
                                             type="text"
                                             className="form-control"
                                             id="character-image-url"
-                                            defaultValue={selectedCharacter.image_url || ''}
+                                            value={characterImgURL}
                                             onChange={handleURLChange}
                                         />
                                     </div>
@@ -215,10 +246,6 @@ function EditCharacter (props) {
                                 </form>
                             </>
                         }
-
-                        {/* Display validation error or success message */}
-                        {error && <div style={{ color: 'red' }}>{error}</div>}
-                        {success && <div style={{ color: 'green' }}>{success}</div>}
                     </div>
 
                 </div>

@@ -6,3 +6,9 @@
     text-transform: uppercase;
 }
 
+.sub-title {
+    text-align: center;
+    text-transform: none;
+    margin-top: 1em;
+}
+

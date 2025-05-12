@@ -1,7 +1,8 @@
-import './App.css';
+import "./css/App.css";
 import { useEffect, useState } from "react";
 import { Routes, Route } from 'react-router-dom';
 import NavBar from './components/NavBar';
+import HomePage from './components/HomePage';
 import CharacterDatabase from './components/CharacterDatabase';
 import AddCharacter from './components/AddCharacter';
 import EditCharacter from './components/EditCharacter';
@@ -40,13 +41,16 @@ function App() {
       {!loading && (
         <>
           <NavBar />
-          <h1 className="main-title">The JeniDub Marvel Universe</h1>
+          <h3 className="sub-title">Welcome to the</h3>
+          <h1 className="main-title">JeniDub Marvel Character Database</h1>
+          <br />
           <Routes>
-            <Route path='/' element={<CharacterDatabase characterDatabase={data} />} />
+            <Route path='/' element={<HomePage characterDatabase={data} />} />
+            <Route path='/database' element={<CharacterDatabase characterDatabase={data} />} />
             <Route path="/add" element={<AddCharacter sampleCharacterCard={data[0]}/>} />
             <Route path="/edit" element={<EditCharacter characterDatabase={data} />} />
             <Route path="/delete" element={<DeleteCharacter characterDatabase={data} />} />
-            <Route path="/404" element={<ErrorPage />} />
+            <Route path="*" element={<ErrorPage />} />
           </Routes>
         </>
       )}

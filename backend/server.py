@@ -1,5 +1,5 @@
 # py -m venv venv | python3 -m venv venv - create virtual env
-# venv\Scripts\activate | source venv/bin/activate - activate virtual env 
+# (Mac) source venv/bin/activate - activate virtual env 
 # pip install -r requirements.txt => install requirements from txt file
 # python3 server.py => run the MySQL server
 
@@ -97,10 +97,10 @@ def create_character():
         return jsonify(e.messages), 400
     
     new_character = Character(name=character_data['name'], 
-                              alias=character_data['alias'], 
-                              alignment=character_data['alignment'], 
-                              powers=character_data['powers'], 
-                              image_url=character_data['image_url'])
+                            alias=character_data['alias'], 
+                            alignment=character_data['alignment'], 
+                            powers=character_data['powers'], 
+                            image_url=character_data['image_url'])
     
     db.session.add(new_character)
     db.session.commit()

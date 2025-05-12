@@ -2,12 +2,8 @@ import { useState } from 'react';
 import '../css/AddCharacter.css';
 import CharacterCard from "./CharacterCard";
 
-function AddCharacter (props) {
+function AddCharacter () {
     const DEFAULT_API_URL = "http://127.0.0.1:5000/characters";
-
-    // import Character Card object from App.jsx
-    const { sampleCharacterCard } = props;
-    console.log(sampleCharacterCard);
 
     // Init state for all form data
     const [ characterName, setCharacterName ] = useState("");
@@ -15,6 +11,15 @@ function AddCharacter (props) {
     const [ characterAlignment, setCharacterAlignment ] = useState("");
     const [ characterPowers, setCharacterPowers ] = useState("");
     const [ characterImgURL, setcharacterImgURL ] = useState("");
+
+    // Create object for CharacterCard info to preview before submission
+    let newCharacterInfo = {
+        name: characterName,
+        alias: characterAlias,
+        alignment: characterAlignment,
+        powers: characterPowers,
+        image_url: characterImgURL
+    }
 
     // Init state to handle submit
     const [ error, setError] = useState("");
@@ -108,44 +113,73 @@ function AddCharacter (props) {
     return (
         <>
             <div className="form-container">
-                <div className="">
-                    <CharacterCard characterInfo={sampleCharacterCard} />
-                </div>
-                <div className="content-container">
-                    <div>
+                <div className="content-container mb-2">
+                    <div className='text-center mb-3'>
                         <h2>Add a Marvel Character</h2>
-                        <p>
-                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quasi error non qui natus ullam 
-                            pariatur debitis sit tempore aliquam. Architecto exercitationem repellat praesentium 
-                            voluptas reiciendis deleniti nostrum doloremque debitis incidunt!
-                        </p>
+                        <p>Use the form below to add a character to the database. Please note: All fields are required to submit.</p>
                     </div>
-                    <div>
-                        <form onSubmit={handleSubmit}>
-                            <div className="form-element">
-                                <label htmlFor="character-name" className="form-label">Character Name</label>
-                                <input type="text" className="form-control" id="character-name" placeholder="i.e. Black Panther" onChange={handleNameChange} />
-                            </div>
-                            <div className="form-element">
-                                <label htmlFor="character-alias" className="form-label">Character Alias</label>
-                                <input type="text" className="form-control" id="character-alias" placeholder="i.e. King T'Challa" onChange={handleAliasChange}/>
-                            </div>
-                            <div className="form-element">
-                                <label htmlFor="character-align" className="form-label">Hero or Villain?</label>
-                                <input type="dropdown" className="form-control" id="character-align"onChange={handleAlignmentChange} />
-                            </div>
-                            <div className="form-element">
-                                <label htmlFor="character-powers" className="form-label">Please list your character&apos;s powers</label>
-                                <input type="text" className="form-control" id="character-powers" onChange={handlePowersChange} />
-                            </div>
-                            <div className="form-element">
-                                <label htmlFor="character-image-url" className="form-label">Copy and paste the image URL for your character&apos;s profile picture</label>
-                                <input type="text" className="form-control" id="character-image-url" onChange={handleURLChange}/>
-                            </div>
-                            <div className="form-element">
-                                <button type='submit'>Add Character to the Database</button>
-                            </div>
-                        </form>
+                    <div className='row text-center'>
+                        <div className='col'>
+                            <p className='text-center fst-italic'>Character Card Preview</p>
+                            <CharacterCard characterInfo={newCharacterInfo} />
+                        </div>
+                        <div className='col'>
+                            <form onSubmit={handleSubmit}>
+                                <div className="form-element">
+                                    <label htmlFor="character-name" className="form-label">Character Name</label>
+                                    <input 
+                                        type="text"
+                                        className="form-control"
+                                        id="character-name"
+                                        placeholder="i.e. Black Panther"
+                                        value={characterName}
+                                        onChange={handleNameChange} />
+                                </div>
+                                <div className="form-element">
+                                    <label htmlFor="character-alias" className="form-label">Character Alias</label>
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        id="character-alias"
+                                        placeholder="i.e. King T'Challa"
+                                        value={characterAlias}
+                                        onChange={handleAliasChange}/>
+                                </div>
+                                <div className="form-element">
+                                    <label htmlFor="character-align" className="form-label">Hero or Villain?</label>
+                                    <input
+                                        type="dropdown"
+                                        className="form-control"
+                                        id="character-align"
+                                        value={characterAlignment}
+                                        onChange={handleAlignmentChange} />
+                                </div>
+                                <div className="form-element">
+                                    <label htmlFor="character-powers" className="form-label">
+                                        Please list your character&apos;s powers{<br />}
+                                        (Separate each power with a comma)
+                                    </label>
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        id="character-powers"
+                                        value={characterPowers}
+                                        onChange={handlePowersChange} />
+                                </div>
+                                <div className="form-element">
+                                    <label htmlFor="character-image-url" className="form-label">Copy and paste the image URL for your character&apos;s profile picture</label>
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        id="character-image-url"
+                                        value={characterImgURL}
+                                        onChange={handleURLChange}/>
+                                </div>
+                                <div className="form-element">
+                                    <button type='submit'>Add Character to the Database</button>
+                                </div>
+                            </form>
+                        </div>
 
                         {/* Display validation error or success message */}
                         {error && <div style={{ color: 'red' }}>{error}</div>}

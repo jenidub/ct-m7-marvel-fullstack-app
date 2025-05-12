@@ -6,8 +6,9 @@
     color: white;
 }
 
-.hero {
-    background-color: #FFD000;
+.hero, 
+.info-background {
+    background-color: #FFD000 !important;
 }
 
 .villain {
@@ -30,8 +31,12 @@
 }
 
 .character-img {
-    width: 300px;
-    height: 200px;
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    object-position: center;
+    border-top-left-radius: 0.375rem;
+    border-top-right-radius: 0.375rem;
 }
 
 .character-content {
@@ -39,6 +44,7 @@
 }
 
 .character-name {
+    min-height: 40px;
     font-family: "Lemon", serif;
     font-size: 1.75em;
     font-weight: 400;
@@ -48,11 +54,28 @@
     -webkit-text-stroke-color: black;
 }
 
+.character-alias,
+.character-affil {
+    border: none;
+}
+
+.character-alias {
+    font-family: "Alata", serif;
+    font-size: 1.25em;
+    font-weight: 400;
+    font-style: italic;
+    padding: 0;
+}
+
 .character-affil {
     font-family: "Pathway Gothic One", serif;
-    font-size: 1.75em;
+    font-size: 1.5em;
     font-weight: 400;
     font-style: normal;
+}
+
+.card-background {
+    background-color: white;
 }
 
 .character-powers {
@@ -63,6 +86,10 @@
     align-items: center;
 }
 
+.power-text {
+    color: black;
+}
+
 .power-cell {
     color: black;
     background-color: white;
@@ -71,4 +98,17 @@
     width: 40%;
     text-wrap: wrap;
     padding: .75em 1em;
+}
+
+.text-fit {
+    font-size: clamp(0.75rem, 2.5vw, 1rem);
+    /* responsive font size */
+    overflow: hidden;
+    /* text-overflow: ellipsis; */
+    text-wrap: wrap;
+    /* white-space: nowrap; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 4.25rem; /* optional for consistent vertical size */
 }
