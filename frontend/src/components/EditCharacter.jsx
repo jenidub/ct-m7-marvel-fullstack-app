@@ -153,13 +153,14 @@ function EditCharacter (props) {
     // Component JSX Render
     return (
         <>
-            <div className="form-container">
-                <div className="text-center">
-                    <div>
+            <div className='content-container'>
+                <div>
+                    <div className="text-center">
                         <h2>Edit an Existing Character</h2>
                         <p>
                             Use the form below to edit an existing character in the database.
-                            You can update as many field as you want.</p>
+                            You can update as many field as you want.
+                        </p>
                     </div>
                     <div className='content-container text-center'>
                         {/* Display validation error or success message */}
@@ -183,11 +184,11 @@ function EditCharacter (props) {
                         {searchError && <p className="text-red-500 mt-2">{searchError}</p>}
 
                         { selectedCharacter &&
-                            <>
-                                <div className="">
+                            <div className="form-container row">
+                                <div className="card-container col">
                                     {selectedCharacter && <CharacterCard characterInfo={selectedCharacter} />}
                                 </div>
-                                <form onSubmit={handleSubmit}>
+                                <form onSubmit={handleSubmit} className='col'>
                                     <div className="form-element">
                                         <label htmlFor="character-name" className="form-label">Character Name</label>
                                         <input 
@@ -244,10 +245,9 @@ function EditCharacter (props) {
                                         <button type='submit'>Submit Changes to the Database</button>
                                     </div>
                                 </form>
-                            </>
+                            </div>
                         }
                     </div>
-
                 </div>
             </div>
         </>

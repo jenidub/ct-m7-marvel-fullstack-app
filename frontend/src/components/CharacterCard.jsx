@@ -52,11 +52,11 @@ function CharacterCard({ characterInfo }) {
         <div className="container my-3">
             <div className="row justify-content-center">
                 <div className="col-12 col-md-10 col-lg-12">
-                    <Card className="character-card hero w-100 mb-4" style={{ margin: 'auto', maxWidth: '100%' }}>
+                    <Card className="character-card hero w-100 mb-4" style={{ margin: 'auto', minWidth: '350px', maxWidth: '400px' }}>
                         <Card.Img
                             className="character-img"
                             variant="top"
-                            src={characterInfo.image_url ? characterInfo.image_url : "https://placehold.co/600x400"}
+                            src={characterInfo.image_url ? characterInfo.image_url : "https://placehold.co/400x300"}
                             alt={`Image of ${characterInfo.name ? characterInfo.name : ""}`}
                         />
                         <Card.Body className="character-content hero">

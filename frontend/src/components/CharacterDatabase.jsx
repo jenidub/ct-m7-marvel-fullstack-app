@@ -26,15 +26,15 @@ function CharacterDatabase({ characterDatabase }) {
                     disabled={currentPage === 1}
                     onClick={() => handlePageChange(currentPage - 1)}
                 />
-                {[...Array(totalPages)].map((_, index) => (
-                    <Pagination.Item
-                        key={index + 1}
-                        active={index + 1 === currentPage}
-                        onClick={() => handlePageChange(index + 1)}
-                    >
-                        {index + 1}
-                    </Pagination.Item>
-                ))}
+                    {[...Array(totalPages)].map((_, index) => (
+                        <Pagination.Item
+                            key={index + 1}
+                            active={index + 1 === currentPage}
+                            onClick={() => handlePageChange(index + 1)}
+                        >
+                            {index + 1}
+                        </Pagination.Item>
+                    ))}
                 <Pagination.Next
                     disabled={currentPage === totalPages}
                     onClick={() => handlePageChange(currentPage + 1)}
@@ -43,7 +43,7 @@ function CharacterDatabase({ characterDatabase }) {
 
             <Row className="g-4 justify-content-center">
                 {visibleCharacters.map((character) => (
-                    <Col key={character.id} xs={12} md={6} lg={4}>
+                    <Col key={character.id} xs={12} lg={4}>
                         <CharacterCard characterInfo={character} />
                     </Col>
                 ))}

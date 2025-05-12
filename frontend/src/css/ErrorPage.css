@@ -1,0 +1,32 @@
+.error-page {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.home-link {
+    background-color: white;
+    width: fit-content;
+    height: 1em;
+    padding: 15px 10px;
+    font-family: "Pathway Gothic One", sans-serif;
+    color: #FD3037;
+    text-transform: uppercase;
+    font-size: 1.75em;
+    font-weight: 700;
+}
+
+.error-text-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* width: 80%; */
+    margin: 1em;
+}
+
+.error-text {
+    width: 100%;
+}
+
+.error-link-container {
+    margin: 3em 0em;
+}

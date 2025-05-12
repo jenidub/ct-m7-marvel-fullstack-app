@@ -91,10 +91,10 @@ function AddCharacter () {
             // Display success message
             const data = await response.json();
             setSuccess(
-                <div>
+                <div> 
                     <p>New Character Added Successfully!</p>
                     <p>ID: {data.id}</p>
-                    <p>Character Added: {data.name} aka {data.alignment}</p>
+                    <p>Character Added: {data.name} aka {data.alignment[0].toUpperCase() + data.alignment.slice(1)}</p>
                 </div>
             )
             
@@ -118,12 +118,13 @@ function AddCharacter () {
                         <h2>Add a Marvel Character</h2>
                         <p>Use the form below to add a character to the database. Please note: All fields are required to submit.</p>
                     </div>
-                    <div className='row text-center'>
-                        <div className='col'>
-                            <p className='text-center fst-italic'>Character Card Preview</p>
+                    <div className='row'>
+                        <div className='col col-md-8 text-center'>
+                            <p className='text-center fst-italic card-preview-text'>Character Card Preview</p>
                             <CharacterCard characterInfo={newCharacterInfo} />
                         </div>
-                        <div className='col'>
+                        {/* <div className='col-lg-none col-md-2'></div> */}
+                        <div className='col col-md-4'>
                             <form onSubmit={handleSubmit}>
                                 <div className="form-element">
                                     <label htmlFor="character-name" className="form-label">Character Name</label>
@@ -176,7 +177,7 @@ function AddCharacter () {
                                         onChange={handleURLChange}/>
                                 </div>
                                 <div className="form-element">
-                                    <button type='submit'>Add Character to the Database</button>
+                                    <button type='submit' className='submit-button'>Add Character to the Database</button>
                                 </div>
                             </form>
                         </div>

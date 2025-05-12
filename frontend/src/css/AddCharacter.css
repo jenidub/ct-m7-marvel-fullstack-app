@@ -27,3 +27,13 @@ button {
     margin: 0px;
 }
 
+.card-preview-text {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.submit-button {
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 10px;
+}

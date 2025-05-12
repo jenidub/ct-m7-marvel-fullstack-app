@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import '../css/EditCharacter.css';
+import '../css/ViewCharacter.css';
 import CharacterCard from "./CharacterCard";
 
 function ViewCharacter (props) {
@@ -25,21 +25,10 @@ function ViewCharacter (props) {
         }
     }
 
-    // Ensure the data in the fields to be edited refreshes with each search
-    // useEffect(() => {
-    //     if (selectedCharacter) {
-    //         setCharacterName(selectedCharacter.name || "");
-    //         setCharacterAlias(selectedCharacter.alias || "");
-    //         setCharacterAlignment(selectedCharacter.alignment || "");
-    //         setCharacterPowers(selectedCharacter.powers || "");
-    //         setcharacterImgURL(selectedCharacter.image_url || "");
-    //     }
-    // }, [selectedCharacter]);
-
     // Component JSX Render
     return (
         <>
-            <div className="form-container">
+            <div className="content-container">
                 <div className="text-center">
                     <div>
                         <h2>View a Character Card</h2>
